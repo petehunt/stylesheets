@@ -1,9 +1,13 @@
 // Cache DOM reads so we don't need to do them
 // over and over
+var processHref = require('./processHref');
+
 var alreadyRequired = {};
 
 module.exports = {
   requireStylesheet: function(href) {
+    href = processHref(href);
+
     if (alreadyRequired[href] === undefined) {
       // Need to check if it was server rendered
       alreadyRequired[href] = document.querySelectorAll(

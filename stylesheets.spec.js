@@ -27,4 +27,17 @@ describe('statics', function() {
       }
     );
   });
+
+  it('should inject _all.css in prod', function() {
+    var statics = require('./src/server');
+    process.env.NODE_ENV = 'production';
+    process.env.STATIC_ROOT = '/statics/';
+    var markup = statics.getHeadMarkupFor(function() {
+      statics.requireStylesheet('myfile.css');
+      statics.requireStylesheet('myfile2.css');
+    });
+    expect(markup).toBe(
+      '<link rel="stylesheet" href="/statics/_all.css" type="text/css" />'
+    );
+  });
 });
