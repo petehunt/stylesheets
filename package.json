@@ -1,11 +1,11 @@
 {
-  "name": "statics-stylesheets",
+  "name": "stylesheets",
   "version": "0.0.1",
   "description": "statics implementation for stylesheets",
   "main": "src/index.js",
   "browser": "src/browser.js",
   "scripts": {
-    "test": "jasmine-node statics-stylesheets.spec.js"
+    "test": "jasmine-node stylesheets.spec.js"
   },
   "devDependencies": {
     "jasmine-node": "~1.12.0",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/petehunt/statics-stylesheets"
+    "url": "https://github.com/petehunt/stylesheets"
   },
   "keywords": [
     "statics",
@@ -26,6 +26,6 @@
   "author": "Pete Hunt",
   "license": "Apache 2",
   "bugs": {
-    "url": "https://github.com/petehunt/statics-stylesheets/issues"
+    "url": "https://github.com/petehunt/stylesheets/issues"
   }
 }
