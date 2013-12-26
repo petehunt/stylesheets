@@ -12,12 +12,12 @@ module.exports = {
       // Need to check if it was server rendered
       alreadyRequired[href] = document.querySelectorAll(
         'link[href=' + JSON.stringify(href) + ']'
-      );
+      ).length;
     }
 
     if (!alreadyRequired[href]) {
       // Actually insert the stylesheet
-      var elem = document.createElement('style');
+      var elem = document.createElement('link');
       elem.rel = 'stylesheet';
       elem.href = href;
       elem.type = 'text/css';
