@@ -1,6 +1,6 @@
 {
   "name": "stylesheets",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "statics implementation for stylesheets",
   "main": "src/index.js",
   "browser": "src/browser.js",
