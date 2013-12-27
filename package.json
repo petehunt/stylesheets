@@ -1,8 +1,8 @@
 {
   "name": "stylesheets",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "statics implementation for stylesheets",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "browser": "src/browser.js",
   "scripts": {
     "test": "jasmine-node stylesheets.spec.js"
@@ -10,6 +10,9 @@
   "devDependencies": {
     "jasmine-node": "~1.12.0",
     "jsdom": "~0.8.10"
+  },
+  "peerDependencies": {
+    "envify": "~0.2.0"
   },
   "repository": {
     "type": "git",
@@ -27,5 +30,8 @@
   "license": "Apache 2",
   "bugs": {
     "url": "https://github.com/petehunt/stylesheets/issues"
+  },
+  "browserify": {
+    "transform": ["envify"]
   }
 }
