@@ -13,25 +13,44 @@ describe('statics', function() {
 
   it('should work in the browser', function() {
     var jsdom = require('jsdom');
-    jsdom.env(
-      'http://facebook.com/',
-      [],
-      function (errors, window) {
+    var done = false;
+    var testResults = [];
+
+    runs(function() {
+      // this test is unstable; every error is swallowed
+      jsdom.env('http://facebook.com/', [], function(errors, window) {
+        if (errors) {
+          done = false;
+          return;
+        }
+        // `requireStylesheet` calls `document` globally; jsdom puts it in window
         global.window = window;
-        var statics = require('./src/client');
+        global.document = window.document;
+        var statics = require('./src/browser');
         statics.requireStylesheet('myfile.css');
         statics.requireStylesheet('myfile2.css');
-        expect(window.document.querySelectorAll('link[href="myfile.css"]').length).toBe(1);
-        expect(window.document.querySelectorAll('link[href="myfile2.css"]').length).toBe(2);
+        // `expect` is swallowed here, don't use it
+        testResults.push(document.querySelectorAll('link[href="myfile.css"]').length);
+        testResults.push(document.querySelectorAll('link[href="myfile2.css"]').length);
         delete global.window;
-      }
-    );
+
+        done = true;
+      });
+    });
+
+    waitsFor(function() {
+      return done;
+    }, 'testing in the browser');
+
+    runs(function() {
+      expect(testResults).toEqual([1, 1]);
+    });
   });
 
   it('should inject _all.css in prod', function() {
     var statics = require('./src/server');
     process.env.NODE_ENV = 'production';
-    process.env.STATIC_ROOT = '/statics/';
+    process.env.STATIC_ROOT = '/statics';
     var markup = statics.getHeadMarkupFor(function() {
       statics.requireStylesheet('myfile.css');
       statics.requireStylesheet('myfile2.css');
