@@ -1,5 +1,7 @@
 # stylesheets
 
+**Warning: codebase going through major changes.**
+
 ## Mission
 
 Insert stylesheet requires on the server and client.
