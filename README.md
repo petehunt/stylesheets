@@ -1,6 +1,6 @@
 # stylesheets
 
-**Warning: codebase going through major changes.**
+**Warning: deprecated. Just use [Webpack](http://webpack.github.io)**
 
 ## Mission
 
